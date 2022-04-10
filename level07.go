@@ -34,19 +34,17 @@ func play(numbersRange int) {
 				break gameloop
 			case strings.Contains(text, "Za duża"):
 				high = mid
-				mid = (low + high) / 2
-				fmt.Printf("[level01] %s\n", text)
-				reply := fmt.Sprintf("%d\n", mid)
-				fmt.Printf("[level07] %s", reply)
-				stdin.Write([]byte(reply))
 			case strings.Contains(text, "Za mała"):
 				low = mid
-				mid = (low + high) / 2
-				fmt.Printf("[level01] %s\n", text)
-				reply := fmt.Sprintf("%d\n", mid)
-				fmt.Printf("[level07] %s", reply)
-				stdin.Write([]byte(reply))
+			case !strings.Contains(text, "Za"):
+				continue gameloop
 			}
+			mid = (low + high) / 2
+			fmt.Printf("[level01] %s\n", text)
+			reply := fmt.Sprintf("%d\n", mid)
+			fmt.Printf("[level07] %s", reply)
+			stdin.Write([]byte(reply))
+
 		}
 	}(reader)
 	level01.Start()
